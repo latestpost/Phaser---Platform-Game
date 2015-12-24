@@ -13,6 +13,7 @@ Platform game is a full platform example using Phaser
 * Enemies - simple classes to create and move enemies
 * Platforms - animated lift tile
 * Weapons - fireball - destruction of crate blocks
+* Parallax - parallax background
 
 ### Tech
 
