@@ -1,5 +1,6 @@
 /*TODO
- 
+ end of level state
+
  */
 //some global vars 
 var fireballs;
@@ -160,6 +161,12 @@ theGame.prototype = {
                     this.game.state.start("GameOver");
                 }
                 this.game.time.events.add(Phaser.Timer.SECOND * 4, gameOver, this);
+            }
+            
+            if (gameObject.name == 'T24') {
+                this.theme.stop();
+                this.game.state.start("LevelOver");
+                
             }
 
             if (gameObject.name == 'T23' && !this.playerDead) {
@@ -420,7 +427,7 @@ theGame.prototype = {
 
 
         //  The 'mario' key here is the Loader key given in game.load.tilemap
-        map = this.game.add.tilemap('mario');
+        map = this.game.add.tilemap(leveltext);
 
         map.addTilesetImage('super_mario', 'tiles');
 
@@ -588,6 +595,8 @@ theGame.prototype = {
         // HUD Stuff
 
         var playButton = this.game.add.button(100, 60, "button1", goTitle, this);
+        playButton.scale.x=0.4;
+        playButton.scale.y=0.4;
         playButton.fixedToCamera = true;
         playButton.anchor.setTo(0.5, 0.5);
 

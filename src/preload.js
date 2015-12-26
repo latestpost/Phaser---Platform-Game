@@ -1,7 +1,9 @@
 var preload = function(game){}
 
 preload.prototype = {
-	preload: function(){ 
+	preload: function(){
+            level=1;
+            leveltext='level1';
             this.add.sprite(280,240,"loadingBack");
             var loadingBar = this.add.sprite(280,240,"loading");
             //loadingBar.anchor.setTo(0,0.5);
@@ -10,6 +12,8 @@ preload.prototype = {
             this.game.load.image("gametitle","assets/logo.png");
             this.game.load.image("play","assets/play.png");
             this.game.load.image("button1","assets/button1.png");
+            this.game.load.image("button2","assets/button2.png");
+            this.game.load.image("button3","assets/button3.png");
             
              //spritesheet for animations
             this.game.load.spritesheet('mario', 'assets/mariospritesheet-small.png',50,50); // key, sourcefile, framesize x, framesize y
@@ -25,8 +29,11 @@ preload.prototype = {
             this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
             this.game.scale.fullScreenScaleMode = Phaser.ScaleManager.EXACT_FIT;
             
+            //level data
+            this.game.load.tilemap('level1', 'assets/level1.json', null, Phaser.Tilemap.TILED_JSON);
+            this.game.load.tilemap('level2', 'assets/level2.json', null, Phaser.Tilemap.TILED_JSON); 
+            
             //images
-            this.game.load.tilemap('mario', 'assets/level1.json', null, Phaser.Tilemap.TILED_JSON);
             this.game.load.image('tiles', 'assets/super_mario.png');
             this.game.load.image('back1', 'assets/back1.png');
             this.game.load.image('back2', 'assets/back2.png');
@@ -35,6 +42,7 @@ preload.prototype = {
             this.game.load.image('coin', 'assets/coin.png');
             this.game.load.image('bits', 'assets/bits.png');
             this.game.load.image('gameover', 'assets/gameover.png');
+            this.game.load.image('levelover', 'assets/levelover.png');
             this.game.load.image('smoke', 'assets/smoke.png');
             this.game.load.image('star', 'assets/star.png');
             this.game.load.image('star1', 'assets/bluestar.png');
