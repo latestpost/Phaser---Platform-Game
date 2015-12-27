@@ -61,7 +61,7 @@ function explodeWood(x,y,game,graphic,emitter1){
                 
             }
             
-function explodeCircle2(x,y,game,graphic,emitter1){
+function explodeCircle(x,y,game,graphic,emitter1){
                 graphic = graphic || "star";
                 var radius=200;
                 

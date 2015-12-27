@@ -199,7 +199,7 @@ theGame.prototype = {
 
             if (gameObject.name == 'trampoline') {
                 this.fireworksSnd.play();
-                explodeBits(player.x, player.y, this.game, '', emitter5);
+                explodeCircle(player.x, player.y, this.game, '', emitter5);
                 player.body.velocity.y = -800;
             }
 

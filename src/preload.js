@@ -16,7 +16,7 @@ preload.prototype = {
             this.game.load.image("button3","assets/button3.png");
             
              //spritesheet for animations
-            this.game.load.spritesheet('mario', 'assets/mariospritesheet-small.png',50,50); // key, sourcefile, framesize x, framesize y
+            this.game.load.spritesheet('mario', 'assets/newspritesheet-small.png',50,50); // key, sourcefile, framesize x, framesize y
             //background, ground, fireball images
             this.game.load.image('fireball', 'assets/fireball.png',40,30);
             //gamepad buttons
