@@ -14,6 +14,8 @@ preload.prototype = {
             this.game.load.image("button1","assets/button1.png");
             this.game.load.image("button2","assets/button2.png");
             this.game.load.image("button3","assets/button3.png");
+            this.game.load.image("buttonblank","assets/buttonblank.png");
+            this.game.load.image("buttonblankdisabled","assets/buttonblankdisabled.png");
             
              //spritesheet for animations
             this.game.load.spritesheet('mario', 'assets/newspritesheet-small.png',50,50); // key, sourcefile, framesize x, framesize y
@@ -32,6 +34,21 @@ preload.prototype = {
             //level data
             this.game.load.tilemap('level1', 'assets/level1.json', null, Phaser.Tilemap.TILED_JSON);
             this.game.load.tilemap('level2', 'assets/level2.json', null, Phaser.Tilemap.TILED_JSON); 
+            this.game.load.tilemap('level3', 'assets/level3.json', null, Phaser.Tilemap.TILED_JSON); 
+            this.game.load.tilemap('level4', 'assets/level4.json', null, Phaser.Tilemap.TILED_JSON); 
+            this.game.load.tilemap('level5', 'assets/level5.json', null, Phaser.Tilemap.TILED_JSON); 
+            this.game.load.tilemap('level6', 'assets/level6.json', null, Phaser.Tilemap.TILED_JSON); 
+            this.game.load.tilemap('level7', 'assets/level7.json', null, Phaser.Tilemap.TILED_JSON); 
+            this.game.load.tilemap('level8', 'assets/level8.json', null, Phaser.Tilemap.TILED_JSON); 
+            this.game.load.tilemap('level9', 'assets/level9.json', null, Phaser.Tilemap.TILED_JSON); 
+            this.game.load.tilemap('level10', 'assets/level10.json', null, Phaser.Tilemap.TILED_JSON); 
+            this.game.load.tilemap('level11', 'assets/level11.json', null, Phaser.Tilemap.TILED_JSON); 
+            this.game.load.tilemap('level12', 'assets/level12.json', null, Phaser.Tilemap.TILED_JSON); 
+            this.game.load.tilemap('level13', 'assets/level13.json', null, Phaser.Tilemap.TILED_JSON); 
+            this.game.load.tilemap('level14', 'assets/level14.json', null, Phaser.Tilemap.TILED_JSON); 
+            this.game.load.tilemap('level15', 'assets/level15.json', null, Phaser.Tilemap.TILED_JSON); 
+            this.game.load.tilemap('level16', 'assets/level16.json', null, Phaser.Tilemap.TILED_JSON); 
+            
             
             //images
             this.game.load.image('tiles', 'assets/super_mario.png');

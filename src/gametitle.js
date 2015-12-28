@@ -3,6 +3,8 @@ var gameTitle = function(game){}
 gameTitle.prototype = {
   	create: function(){
 
+                var style = {font: "bold 64px Arial", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle"};
+
 		var gameTitle = this.game.add.sprite(400,-110,"gametitle");
 		gameTitle.anchor.setTo(0.5,0.5);
                 this.game.add.tween(gameTitle).to({y:260}, 500, Phaser.Easing.Bounce.Out, true);
@@ -32,6 +34,6 @@ gameTitle.prototype = {
 
 	},
 	playTheGame: function(){
-		this.game.state.start("TheGame");
+		this.game.state.start("LevelSelector");
 	}
 }

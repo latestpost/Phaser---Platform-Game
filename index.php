@@ -9,6 +9,7 @@
 		<script src="src/thegame.js"></script>
 		<script src="src/gameover.js"></script>
                 <script src="src/levelover.js"></script>
+                <script src="src/levelSelector.js"></script>
                 <script src="src/particleFX.js"></script>	
     		<style>
     			body{margin:0}
@@ -22,6 +23,7 @@
 				game.state.add("TheGame",theGame);
 				game.state.add("GameOver",gameOver);
                                 game.state.add("LevelOver",levelOver);
+                                game.state.add("LevelSelector",levelSelector);
 				game.state.start("Boot");
 			})();    
 		</script>

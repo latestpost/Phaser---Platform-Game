@@ -345,7 +345,7 @@ theGame.prototype = {
 
         function goTitle() {
             this.theme.stop();
-            this.game.state.start("GameTitle");
+            this.game.state.start("LevelSelector");
         }
 
         function addEnemy() {
