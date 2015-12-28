@@ -2,6 +2,7 @@
 
 Platform game is a full platform example using Phaser
 
+<img src="http://innovationtech.co.uk/phaser/mario/platformgame.png"/>
 ### Features
 
 * Game states - Title screen, game, game over screen
