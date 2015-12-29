@@ -470,7 +470,7 @@ theGame.prototype = {
         //player.body.debug=true;
 
         // collision logic
-        this.game.physics.p2.setImpactEvents(true);
+        //this.game.physics.p2.setImpactEvents(true);
         player.body.onBeginContact.add(this.playerHit, this);
         this.playerDead = false;
 
@@ -1048,11 +1048,7 @@ theGame.prototype = {
         }
     },
     render: function () {
-
-
-
-        // this.game.debug.body(player);
-
+        this.game.debug.text(this.game.time.fps || '--', 2, 14, "#00ff00");
     }
 };
 
