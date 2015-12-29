@@ -8,9 +8,9 @@ boot.prototype = {
           this.game.load.image("loadingBack","assets/loadingBack.png");
 	},
   	create: function(){
-		this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+		//this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
 		this.scale.pageAlignHorizontally = true;
-		this.scale.setScreenSize();
+		//this.scale.setScreenSize();
 		this.game.state.start("Preload");
 	}
 }

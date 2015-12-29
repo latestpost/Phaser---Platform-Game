@@ -1,5 +1,5 @@
 /*TODO
- end of level state
+teleportation tile
 
  */
 //some global vars 
@@ -18,6 +18,10 @@ var map;
 var layer;
 var land, land2, land3;
 var score = 0;
+var coinsCollected = 0;
+var totalCoins = 0;
+var secretsCollected = 0;
+var totalSecrets = 0;
 var cursors;
 var mapbody;
 var emitter;
@@ -202,12 +206,20 @@ theGame.prototype = {
                 explodeCircle(player.x, player.y, this.game, '', emitter5);
                 player.body.velocity.y = -800;
             }
+            
+            if (gameObject.name == 'T41'||gameObject.name == 'T42'||gameObject.name == 'T43'||gameObject.name == 'T44') { // teleport
+                player.body.x=gameObject.targetX;
+                player.body.y=gameObject.targetY;
+                player.body.velocity.x=0;
+                player.body.velocity.y=0;
+            }
 
             if (gameObject.name == 'coin') {
 
                 map.removeTile(body.tile.x, body.tile.y);
                 this.game.physics.p2.removeBody(body);
                 this.coinSnd.play();
+                coinsCollected++;
                 score = score + 50;
                 this.scoreShow.setText(score);
                 coinUp(body.tile.x * TILE_SIZE + TILE_SIZE / 2, body.tile.y * TILE_SIZE + TILE_SIZE / 2, this.game);
@@ -352,18 +364,25 @@ theGame.prototype = {
             emitter.launch();
         }
 
+        // reset variables
+        
         enemies = [];
         Animator = [];
+        score = 0;
+        coinsCollected = 0;
+        secretsCollected = 0;
+        totalCoins=0;
+        totalSecrets=0;
+        
         emitter = new Emitter(this.game, enemies, 0);
 
         function mapHit(body1, body2) {
-            console.log('Map hit - body1='+body1.tile.index+' body2='+body2+' body2vel='+body2.velocity.y);
+            //console.log('Map hit - body1='+body1.tile.index+' body2='+body2+' body2vel='+body2.velocity.y);
 
             //coin block
             if (body1.tile.index !== null) {
                 if (body1.tile.coins>0&&(body1.tile.index == 47||body1.tile.index == 48)&& body1.y - body2.y < -80) { // hit from bottom
                     body1.tile.coins--;
-                    //console.log('coin emit');
                     this.coinSnd.play();
                     score = score + 50;
                     this.scoreShow.setText(score);
@@ -371,6 +390,7 @@ theGame.prototype = {
                     coinUp(body1.tile.x * TILE_SIZE + TILE_SIZE / 2, body1.tile.y * TILE_SIZE + TILE_SIZE / 2, this.game);
                     if (body1.tile.coins <= 0) {
                         this.breakblockSnd.play();
+                        secretsCollected++;
                         explodeSmoke(body1.tile.x * TILE_SIZE + TILE_SIZE / 2, body1.tile.y * TILE_SIZE + TILE_SIZE / 2, this.game);
                         explodeBits(body1.tile.x * TILE_SIZE + TILE_SIZE / 2, body1.tile.y * TILE_SIZE + TILE_SIZE / 2, this.game, '', emitter5);
                         
@@ -421,10 +441,8 @@ theGame.prototype = {
         this.game.physics.p2.setBoundsToWorld(true, true, false, true, false); //(left, right, top, bottom, setCollisionGroup)
         this.game.physics.p2.friction = 0.25;   // default friction between ground and player or fireballs
 
-        tileCollisionGroup = this.game.physics.p2.createCollisionGroup();
-        playerCollisionGroup = this.game.physics.p2.createCollisionGroup();
-        enemyCollisionGroup = this.game.physics.p2.createCollisionGroup();
-
+        
+       
 
         //  The 'mario' key here is the Loader key given in game.load.tilemap
         map = this.game.add.tilemap(leveltext);
@@ -433,7 +451,7 @@ theGame.prototype = {
 
         //  Creates a layer from the Tiles layer in the map data.
         layer = map.createLayer('Tiles');
-        console.log(layer);
+        //console.log(layer);
         //  This resizes the game world to match the layer dimensions
         layer.resizeWorld();
         //layer.debug = true;
@@ -812,7 +830,7 @@ theGame.prototype = {
 
                 if (tile && tile.collides && tile.index > 22 && tile.index < 67 || (tile.index>=74&&tile.index<88))
                 {
-                    // console.log(tile.index);
+                    // //console.log(tile.index);
                     if (optimize)
                     {
                         var right = map.getTileRight(layer, x, y);
@@ -856,9 +874,13 @@ theGame.prototype = {
                             var shape = body.addRectangle(tile.width, tile.height, tile.width / 2, tile.height / 2, 0);
                         }
 
-                        if (tile.index >= 22 && tile.index < 44) {
+                        if (tile.index >= 22 && tile.index <= 44) {
                             body.gameObject = {};
                             body.gameObject.name = 'T' + tile.index;
+                            if (tile.index==44){
+                                body.gameObject.targetX=tile.properties.targetX;
+                                body.gameObject.targetY=tile.properties.targetY;
+                            }
                             shape.sensor = true;
                         }
 
@@ -868,6 +890,7 @@ theGame.prototype = {
 
                         if (tile.index == 31) {
                             body.gameObject.name = 'coin';
+                            totalCoins++;
                         }
 
                         if (tile.index == 1) {
@@ -883,6 +906,7 @@ theGame.prototype = {
                         // coin tile block
                         if (tile.index == 47 || tile.index == 48) {
                             tile.coins = 5;
+                            totalSecrets++;
                         }
                         body.tile = tile;
 
@@ -926,7 +950,7 @@ theGame.prototype = {
                 if (cursors.right.isDown) {
                     right = true;
                 }
-
+                jump = false;
                 if (touching.down && cursors.up.isDown && checkIfCanJump) {
                     //explodeFairy(player.x, player.y, this.game,'',emitter1);
                     //explodeSmoke(player.x, player.y, this.game,'',emitter8);

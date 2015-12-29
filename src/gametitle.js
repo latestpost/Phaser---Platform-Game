@@ -6,12 +6,18 @@ gameTitle.prototype = {
                 var style = {font: "bold 64px Arial", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle"};
 
 		var gameTitle = this.game.add.sprite(400,-110,"gametitle");
+                
 		gameTitle.anchor.setTo(0.5,0.5);
                 this.game.add.tween(gameTitle).to({y:260}, 500, Phaser.Easing.Bounce.Out, true);
                 
 		var playButton = this.game.add.button(400,420,"play",this.playTheGame,this);
 		playButton.anchor.setTo(0.5,0.5);
                 playButton.y=420;
+                
+                var toggleButton = this.game.add.button(700,420,"buttonblank",this.toggleVirtualJoystick,this);
+		toggleButton.anchor.setTo(0.5,0.5);
+                toggleButton.scale.x=0.5;
+                toggleButton.scale.y=0.5;
                 
                 var game=this.game;
                 function pulseOutTween(){
@@ -35,5 +41,9 @@ gameTitle.prototype = {
 	},
 	playTheGame: function(){
 		this.game.state.start("LevelSelector");
-	}
+	},
+        
+        toggleVirtualJoystick: function(){
+            useVirtualJoystick=!useVirtualJoystick;
+        }
 }

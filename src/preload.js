@@ -66,6 +66,9 @@ preload.prototype = {
             this.game.load.image('star2', 'assets/greenstar.png');
             this.game.load.image('star3', 'assets/redstar.png');
             this.game.load.image('star4', 'assets/yellowstar.png');
+            this.game.load.image('goldstar', 'assets/yellowstar.png');
+            this.game.load.image('greystar', 'assets/greenstar.png');
+            
             this.game.load.image('hud1', 'assets/bluekey.png');
             this.game.load.image('hud2', 'assets/greenkey.png');
             this.game.load.image('hud3', 'assets/redkey.png');
