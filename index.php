@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 	<head>
-    		<script src="phaser-min.js"></script>
+    		<script src="phaser-min-old.js"></script>
     		<script src="src/boot.js"></script>
 		<script src="src/preload.js"></script>
 		<script src="src/gametitle.js"></script>
