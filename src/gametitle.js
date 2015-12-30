@@ -14,11 +14,6 @@ gameTitle.prototype = {
 		playButton.anchor.setTo(0.5,0.5);
                 playButton.y=420;
                 
-                var toggleButton = this.game.add.button(700,420,"buttonblank",this.toggleVirtualJoystick,this);
-		toggleButton.anchor.setTo(0.5,0.5);
-                toggleButton.scale.x=0.5;
-                toggleButton.scale.y=0.5;
-                
                 var game=this.game;
                 function pulseOutTween(){
                     playButton.scale.x=0.4;
@@ -41,9 +36,5 @@ gameTitle.prototype = {
 	},
 	playTheGame: function(){
 		this.game.state.start("LevelSelector");
-	},
-        
-        toggleVirtualJoystick: function(){
-            useVirtualJoystick=!useVirtualJoystick;
-        }
+	}
 }

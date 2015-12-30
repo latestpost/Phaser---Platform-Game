@@ -372,6 +372,12 @@ theGame.prototype = {
         totalCoins=0;
         totalSecrets=0;
         
+        if (!this.game.device.desktop){
+            useVirtualJoystick=true;
+        }
+        
+        useVirtualJoystick=true;
+        
         emitter = new Emitter(this.game, enemies, 0);
 
         function mapHit(body1, body2) {
@@ -432,15 +438,11 @@ theGame.prototype = {
             this.game.input.onDown.add(gofull, this);
         } //go fullscreen on mobile devices
 
-
         this.game.physics.startSystem(Phaser.Physics.P2JS);  //activate physics
         this.game.physics.p2.gravity.y = 1200;  //realistic gravity
         this.game.world.setBounds(0, 0, 2000, 600);//(x, y, width, height)
         this.game.physics.p2.setBoundsToWorld(true, true, false, true, false); //(left, right, top, bottom, setCollisionGroup)
         this.game.physics.p2.friction = 0.25;   // default friction between ground and player or fireballs
-
-        
-       
 
         //  The 'mario' key here is the Loader key given in game.load.tilemap
         map = this.game.add.tilemap(leveltext);
@@ -531,12 +533,14 @@ theGame.prototype = {
             });
             buttonleft.events.onInputOut.add(function () {
                 left = false;
+                player.body.velocity.x = 0;
             });
             buttonleft.events.onInputDown.add(function () {
                 left = true;
             });
             buttonleft.events.onInputUp.add(function () {
                 left = false;
+                player.body.velocity.x = 0;
             });
 
             buttonbottomleft = this.game.add.button(32, 536, 'buttondiagonal', null, this, 6, 4, 6, 4);
@@ -565,12 +569,14 @@ theGame.prototype = {
             });
             buttonright.events.onInputOut.add(function () {
                 right = false;
+                player.body.velocity.x = 0;
             });
             buttonright.events.onInputDown.add(function () {
                 right = true;
             });
             buttonright.events.onInputUp.add(function () {
                 right = false;
+                player.body.velocity.x = 0;
             });
 
             buttonbottomright = this.game.add.button(160, 536, 'buttondiagonal', null, this, 7, 5, 7, 5);
