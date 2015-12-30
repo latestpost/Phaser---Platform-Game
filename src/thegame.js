@@ -45,16 +45,15 @@ var theGame = function (game) {
 };
 
 theGame.prototype = {
-    fireballHit: function (body, shape, shape2, equation) {
+    fireballHit: function (body, bodyB, shapeA, shapeB, equation) {
 
         if (typeof equation === 'undefined' || equation.length == 0)
         {
             //console.log('no equation');
             return false;
         }
-        var gameBody;
         console.log('fireball hit!');
-
+        
         var index = 0;
         try {
             index = equation[0].bodyB.parent.tile.index;
@@ -74,10 +73,9 @@ theGame.prototype = {
             }
         }
 
-
         if (index)
         {
-            //console.log("Fireball hit Tile "+index);
+            console.log("Fireball hit Tile "+index);
             if (index == 46) { // crate
 
                 if (Math.floor((Math.random() * 10) + 1)>8) { // randomly get coin
@@ -377,7 +375,7 @@ theGame.prototype = {
         emitter = new Emitter(this.game, enemies, 0);
 
         function mapHit(body1, body2) {
-            //console.log('Map hit - body1='+body1.tile.index+' body2='+body2+' body2vel='+body2.velocity.y);
+            console.log('Map hit - body1='+body1.tile.index+' body2='+body2+' body2vel='+body2.velocity.y);
 
             //coin block
             if (body1.tile.index !== null) {
@@ -470,7 +468,7 @@ theGame.prototype = {
         //player.body.debug=true;
 
         // collision logic
-        //this.game.physics.p2.setImpactEvents(true);
+        this.game.physics.p2.setImpactEvents(true);
         player.body.onBeginContact.add(this.playerHit, this);
         this.playerDead = false;
 
