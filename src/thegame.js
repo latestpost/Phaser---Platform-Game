@@ -375,9 +375,6 @@ theGame.prototype = {
         if (!this.game.device.desktop){
             useVirtualJoystick=true;
         }
-        
-        useVirtualJoystick=true;
-        
         emitter = new Emitter(this.game, enemies, 0);
 
         function mapHit(body1, body2) {
